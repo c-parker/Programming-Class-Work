@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Golden Oaks Library</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="styles/main.css"/>
+    </h:head>
+    <h:body>
+        <img src="images/logo.png" class="header"/>
+        <section>
+            <p>Thank you for your patronage of the Golden Oaks Library.
+                You've successfully checked out the book,
+                #{checkoutBean.checkout.bookTitle}. Please note that this book is
+                due back on #{checkoutBean.checkout.formattedDate}. A friendly
+                email reminder will be sent to you if your book becomes
+                overdue.</p>
+
+            <p>
+                <h:link value="Return to front page" outcome="index"/>
+            </p>
+        </section>
+    </h:body>
+</html>

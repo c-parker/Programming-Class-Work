@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Golden Oaks Library</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="styles/main.css"/>
+    </h:head>
+    <h:body>
+        <img src="images/logo.png" class="header"/>
+        <section class="checkedOut">
+            <h1>Currently checked out books</h1>
+            <h:dataTable value="#{checkoutListBean.checkoutList}" var="c"
+                         columnClasses=", , , , overdue">
+                <h:column>
+                    <f:facet name="header">Patron Name</f:facet>
+                        #{c.firstName} #{c.lastName}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email Address</f:facet>
+                        #{c.emailAddress}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Book Title</f:facet>
+                        #{c.bookTitle}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Due Date</f:facet>
+                        #{c.formattedDate}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Overdue</f:facet>
+                    <ui:fragment rendered="#{c.overdue}">
+                        <img src="images/overdue.png"/>
+                    </ui:fragment>
+                </h:column>
+                <h:column>
+                    <h:form>
+                        <f:facet name="header"></f:facet>
+                        <h:commandButton
+                            id="checkin"
+                            action="#{checkoutListBean.doCheckin(c.checkoutNumber)}"
+                            value="Checkin"/>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+            <p>
+                <h:link value="Return to front page" outcome="index"/>
+            </p>
+        </section>
+    </h:body>
+</html>
